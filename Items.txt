@@ -1,7 +1,9 @@
-6
+8
 Iron Sword Common null
 Golden Bow Rare null
 Silver Shield Great null
 Golden Bow Rare null
 Dragon Axe Epic 0 
 Golden Bow Epic 1
+Golden Bow Legendary null
+Golden Bow Rare null

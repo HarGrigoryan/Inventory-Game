@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Inventory {
     private ArrayList<Item> items;
@@ -53,26 +54,39 @@ public class Inventory {
         }
     }
 
-    public void upgradeNonEpics(int first, int second, int third) throws Exception
+    public void upgradeNonEpics(int firstIndex, int secondIndex, int thirdIndex) throws Exception
     {
-        String firstName = items.get(first).getName();
-        String secondName = items.get(second).getName();
-        String thirdName = items.get(third).getName();
+        String firstName = items.get(firstIndex).getName();
+        String secondName = items.get(secondIndex).getName();
+        String thirdName = items.get(thirdIndex).getName();
         if(firstName.equals(secondName) && secondName.equals(thirdName))
         {
-            Item upgradable = items.get(first);
-            items.remove(second);
-            items.remove(third);
+            Item upgradable = items.get(firstIndex);
             if(upgradable.getRarity()==Rarity.COMMON)
                 upgradable.setRarity(Rarity.GREAT);
             else if(upgradable.getRarity()==Rarity.GREAT)
                 upgradable.setRarity(Rarity.RARE);
-            else
+            else {
                 upgradable.setRarity(Rarity.EPIC);
+                upgradable.setUpgradeCount(0);
+            }
+            items.remove(secondIndex);
+            items.remove(thirdIndex);
         }
         else
         {
             throw new Exception("Incorrect combination");
         }
+    }
+
+    @Override
+    public String toString() {
+        Collections.sort(items);
+        StringBuilder sB = new StringBuilder();
+        for (int i = 0; i < items.size(); i++) {
+            sB.append(i + ": " +items.get(i).toString());
+            sB.append("\n");
+        }
+        return sB.toString();
     }
 }

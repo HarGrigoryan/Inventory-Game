@@ -8,6 +8,6 @@ public class Utilities {
             if(i!=high-1)
                 combined.append(" ");
         }
-        return strings.toString();
+        return combined.toString();
     }
 }
